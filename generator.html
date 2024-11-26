@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fractal Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" class="back-button">← Back to Home</a>
+        <h1>Generate Your Fractal</h1>
+    </header>
+    <main>
+        <form id="fractalForm">
+            <div class="form-row">
+                <label>Width:</label>
+                <input type="number" id="width" value="1920" required>
+            </div>
+            <div class="form-row">
+                <label>Height:</label>
+                <input type="number" id="height" value="1080" required>
+            </div>
+            <div class="form-row">
+                <label>Iterations:</label>
+                <input type="number" id="iterations" value="10000" required>
+            </div>
+            <div class="form-row">
+                <label>Symmetry:</label>
+                <input type="number" id="symmetry" value="4" required>
+            </div>
+            <div class="form-row">
+                <label>Gamma:</label>
+                <input type="number" id="gamma" value="2.0" step="0.1" required>
+            </div>
+            <div class="form-row">
+                <label>Generator Type:</label>
+                <select id="generatorType" required>
+                    <option value="single-threaded">Single-Threaded</option>
+                    <option value="multi-threaded">Multi-Threaded</option>
+                </select>
+            </div>
+            <div class="form-row">
+                <label>Transformation Type:</label>
+                <select id="transformationType" required>
+                    <option value="LINEAR">Linear</option>
+                    <option value="SINE">Sine</option>
+                    <option value="SWIRL">Swirl</option>
+                    <option value="SPHERE">Sphere</option>
+                    <option value="HORSESHOE">Horseshoe</option>
+                </select>
+            </div>
+            <div class="form-row">
+                <label>Image Type:</label>
+                <select id="imageType" required>
+                    <option value="PNG">PNG</option>
+                    <option value="JPG">JPG</option>
+                </select>
+            </div>
+            <button type="submit">Generate Fractal</button>
+        </form>
+        <img id="fractalImage" alt="Generated Fractal" style="display:none;">
+        <a id="downloadLink" href="#" style="display:none;">Download</a>
+    </main>
+    <footer>
+        <p>© Fractal Analysis. All rights reserved.</p>
+    </footer>
+    <script src="app.js"></script>
+</body>
+</html>
