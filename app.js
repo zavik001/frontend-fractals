@@ -50,7 +50,6 @@ if (document.getElementById('fractalForm')) {
     });
 }
 
-
 if (document.getElementById('analyzeButton')) {
     document.getElementById('analyzeButton').addEventListener('click', async () => {
         const canvas = document.getElementById('analysisChart');
@@ -60,18 +59,20 @@ if (document.getElementById('analyzeButton')) {
             window.analysisChart.destroy();
         }
 
-        const delayTime = 1500;
-
         try {
-            const multiData = await fetchWithDelay('http://localhost:8080/api/analysis/multi', delayTime);
-            const singleData = await fetchWithDelay('http://localhost:8080/api/analysis/single', delayTime);
+            const response = await fetch('http://localhost:8080/api/analysis/data');
+            if (!response.ok) {
+                throw new Error('Failed to fetch graph data');
+            }
 
-            if (!multiData || !singleData) {
+            const { singleThreaded, multiThreaded } = await response.json();
+
+            if (!singleThreaded || !multiThreaded) {
                 throw new Error('No data available for chart generation.');
             }
 
-            const multiThreadedPoints = multiData.map(point => ({ x: point.iterations, y: point.timeTaken }));
-            const singleThreadedPoints = singleData.map(point => ({ x: point.iterations, y: point.timeTaken }));
+            const singleThreadedPoints = singleThreaded.map(point => ({ x: point.iterations, y: point.timeTaken }));
+            const multiThreadedPoints = multiThreaded.map(point => ({ x: point.iterations, y: point.timeTaken }));
 
             window.analysisChart = new Chart(ctx, {
                 type: 'line',
@@ -142,19 +143,4 @@ if (document.getElementById('analyzeButton')) {
             alert('Error generating chart. Check the console for details.');
         }
     });
-}
-
-async function fetchWithDelay(url, delay) {
-    console.log(`Sending request to ${url} in ${delay} ms`);
-    await new Promise(resolve => setTimeout(resolve, delay));
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`Request failed for ${url}: ${response.status} (${response.statusText})`);
-        }
-        return response.json();
-    } catch (error) {
-        console.error(`Fetch error for ${url}:`, error);
-        throw error;
-    }
 }
