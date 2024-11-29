@@ -82,8 +82,8 @@ label {
 
 input,
 select {
-    width: 100%;
-    padding: 10px;
+    width: 99%;
+    padding: 4px;
     font-size: 16px;
     border: 1px solid #555;
     border-radius: 5px;
@@ -168,4 +168,266 @@ canvas {
     height: 100%;
     object-fit: cover;
     border: none;
+}
+
+#transformations option:checked {
+    background-color: #007BFF;
+    color: white;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #222;
+    color: #fff;
+    margin: 0;
+    padding: 20px;
+}
+
+.form-row {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-label {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: #333;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #444;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.checkbox-label input[type="checkbox"] {
+    accent-color: #007BFF;
+    width: 18px;
+    height: 18px;
+}
+
+.checkbox-label:hover {
+    background-color: #555;
+}
+
+#fractalForm {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+#fractalForm label {
+    font-size: 1rem;
+}
+
+#fractalForm input,
+#fractalForm select {
+    font-size: 1rem;
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: #222;
+    color: #fff;
+}
+
+#fractalForm button {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#fractalForm button:hover {
+    background-color: #0056b3;
+}
+
+#fractalImage {
+    max-width: 100%;
+    margin-top: 20px;
+    border: 1px solid #444;
+    border-radius: 5px;
+}
+
+#downloadLink {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#downloadLink:hover {
+    text-decoration: underline;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: #333;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #444;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.checkbox-label input[type="checkbox"] {
+    accent-color: #007BFF;
+    width: 18px;
+    height: 18px;
+}
+
+.checkbox-label:hover {
+    background-color: #555;
+}
+
+.form-label {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.gallery {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.gallery img {
+    width: calc(33% - 10px);
+    height: auto;
+    object-fit: cover;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.contact-section {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.button:hover {
+    background: #0056b3;
+}
+
+.buttons-container {
+    margin-bottom: 40px;
+}
+
+.gallery {
+    margin-top: 20px;
+}
+
+.top-fractals {
+    text-align: start;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    margin-left: 15px;
+}
+
+.top-fractals h2 {
+    font-size: 2rem;
+    color: #454141;
+    margin-bottom: 10px;
+}
+
+.top-fractals p {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.contact-section {
+    background-color: #898888;
+    border: 1px solid #6a6262;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 100px auto;
+    max-width: 1920px;
+    text-align: center;
+}
+
+.contact-section h3 {
+    font-size: 1.8rem;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+.contact-section p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+.contact-section a {
+    color: #afcded;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.contact-section a:hover {
+    text-decoration: underline;
+}
+
+.contact-section {
+    margin: 10px auto;
+    max-width: 1920px;
+    padding: 80px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #908f8f;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contact-section h3 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #333;
+}
+
+.contact-section p {
+    margin: 0;
+    line-height: 1.6;
+    color: #555;
+}
+
+.contact-section a {
+    color: #20558e;
+    text-decoration: none;
+}
+
+.contact-section a:hover {
+    text-decoration: underline;
 }

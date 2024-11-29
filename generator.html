@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fractal Generator</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <header>
         <a href="index.html" class="back-button">← Back to Home</a>
@@ -13,6 +15,7 @@
     </header>
     <main>
         <form id="fractalForm">
+            <!-- Width and Height -->
             <div class="form-row">
                 <label>Width:</label>
                 <input type="number" id="width" value="1920" required>
@@ -21,10 +24,42 @@
                 <label>Height:</label>
                 <input type="number" id="height" value="1080" required>
             </div>
+
+            <!-- Left, Top, Horizontal and Vertical Size -->
             <div class="form-row">
-                <label>Iterations:</label>
-                <input type="number" id="iterations" value="10000" required>
+                <label>Left:</label>
+                <input type="number" id="left" value="-4.0" step="0.1" required>
             </div>
+            <div class="form-row">
+                <label>Top:</label>
+                <input type="number" id="top" value="-3.0" step="0.1" required>
+            </div>
+            <div class="form-row">
+                <label>Horizontal Size:</label>
+                <input type="number" id="horizontalSize" value="8.0" step="0.1" required>
+            </div>
+            <div class="form-row">
+                <label>Vertical Size:</label>
+                <input type="number" id="verticalSize" value="6.0" step="0.1" required>
+            </div>
+
+            <!-- Affine Coefficients -->
+            <div class="form-row">
+                <label>Affine Coefficients:</label>
+                <input type="number" id="affineCoefficients" value="3" required>
+            </div>
+
+            <!-- Samples and Iterations -->
+            <div class="form-row">
+                <label>Samples:</label>
+                <input type="number" id="samples" value="5" min="1" max="10" required>
+            </div>
+            <div class="form-row">
+                <label>Iterations Per Sample:</label>
+                <input type="number" id="iterPerSample" value="10000" min="1" max="1000000000" required>
+            </div>
+
+            <!-- Symmetry and Gamma -->
             <div class="form-row">
                 <label>Symmetry:</label>
                 <input type="number" id="symmetry" value="4" required>
@@ -33,6 +68,8 @@
                 <label>Gamma:</label>
                 <input type="number" id="gamma" value="2.0" step="0.1" required>
             </div>
+
+            <!-- Generator Type -->
             <div class="form-row">
                 <label>Generator Type:</label>
                 <select id="generatorType" required>
@@ -40,23 +77,58 @@
                     <option value="multi-threaded">Multi-Threaded</option>
                 </select>
             </div>
+
+            <!-- Transformations -->
             <div class="form-row">
-                <label>Transformation Type:</label>
-                <select id="transformationType" required>
-                    <option value="LINEAR">Linear</option>
-                    <option value="SINE">Sine</option>
-                    <option value="SWIRL">Swirl</option>
-                    <option value="SPHERE">Sphere</option>
-                    <option value="HORSESHOE">Horseshoe</option>
-                </select>
+                <label class="form-label">Transformations:</label>
+                <div id="transformations" class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="transformation" value="DISK" checked> Disk
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="transformation" value="EXPONENTIAL"> Exponential
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="transformation" value="HEART"> Heart
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="transformation" value="HYPERBOLIC"> Hyperbolic
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="transformation" value="LINEAR"> Linear
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="transformation" value="POLAR"> Polar
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="transformation" value="SINE"> Sine
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="transformation" value="SPHERE"> Sphere
+                    </label>
+                </div>
             </div>
+
+            <!-- ImageProcessors -->
+            <div class="form-row">
+                <label class="form-label">Image Processors:</label>
+                <div id="imageProcessors" class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="GammaCorrection" value="GammaCorrection" checked> Gamma Correction
+                    </label>
+                </div>
+            </div>
+
+            <!-- Image Type -->
             <div class="form-row">
                 <label>Image Type:</label>
                 <select id="imageType" required>
                     <option value="PNG">PNG</option>
                     <option value="JPG">JPG</option>
+                    <option value="BMP">BMP</option>
                 </select>
             </div>
+
             <button type="submit">Generate Fractal</button>
         </form>
         <img id="fractalImage" alt="Generated Fractal" style="display:none;">
@@ -67,4 +139,5 @@
     </footer>
     <script src="app.js"></script>
 </body>
+
 </html>

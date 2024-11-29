@@ -1,54 +1,63 @@
-let currentImageUrl = null;
-let analysisChart = null;
-
 if (document.getElementById('fractalForm')) {
     document.getElementById('fractalForm').addEventListener('submit', async (event) => {
         event.preventDefault();
 
         const formData = {
-            width: +document.getElementById('width').value,
-            height: +document.getElementById('height').value,
-            iterations: +document.getElementById('iterations').value,
-            symmetry: +document.getElementById('symmetry').value,
-            gamma: +document.getElementById('gamma').value,
+            width: parseInt(document.getElementById('width').value),
+            height: parseInt(document.getElementById('height').value),
+            left: parseFloat(document.getElementById('left').value),
+            top: parseFloat(document.getElementById('top').value),
+            horizontalSize: parseFloat(document.getElementById('horizontalSize').value),
+            verticalSize: parseFloat(document.getElementById('verticalSize').value),
+            affineCoefficients: parseInt(document.getElementById('affineCoefficients').value),
+            samples: parseInt(document.getElementById('samples').value),
+            iterPerSample: parseInt(document.getElementById('iterPerSample').value),
+            symmetry: parseInt(document.getElementById('symmetry').value),
+            gamma: parseFloat(document.getElementById('gamma').value),
             generatorType: document.getElementById('generatorType').value,
-            transformationType: document.getElementById('transformationType').value,
+            transformations: Array.from(document.querySelectorAll('#transformations input:checked')).map(el => el.value),
+            ImageProcessors: Array.from(document.querySelectorAll('#imageProcessors input:checked')).map(el => el.value),
             imageType: document.getElementById('imageType').value,
         };
+
+        if (formData.transformations.length === 0) {
+            formData.transformations.push('LINEAR');
+        }
+
+        if (formData.ImageProcessors.length === 0) {
+            formData.ImageProcessors.push('GammaCorrection');
+        }
 
         try {
             const response = await fetch('http://localhost:8080/api/fractals/generate', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData),
             });
 
             if (!response.ok) {
-                const errorText = await response.text();
-                console.error('Error generating fractal:', errorText);
-                alert('Error generating fractal. Please try again.');
-                return;
+                throw new Error('Failed to generate fractal');
             }
 
             const blob = await response.blob();
-            const url = URL.createObjectURL(blob);
+            const imageUrl = URL.createObjectURL(blob);
 
             const fractalImage = document.getElementById('fractalImage');
-            fractalImage.src = url;
+            fractalImage.src = imageUrl;
             fractalImage.style.display = 'block';
 
             const downloadLink = document.getElementById('downloadLink');
-            downloadLink.href = url;
+            downloadLink.href = imageUrl;
             downloadLink.download = `fractal.${formData.imageType.toLowerCase()}`;
             downloadLink.style.display = 'block';
+
         } catch (error) {
             console.error('Error:', error);
-            alert('An unexpected error occurred. Please check the console for details.');
+            alert('Failed to generate fractal. Check the console for details.');
         }
     });
 }
+
 
 if (document.getElementById('analyzeButton')) {
     document.getElementById('analyzeButton').addEventListener('click', async () => {
