@@ -29,7 +29,7 @@ if (document.getElementById('fractalForm')) {
         }
 
         try {
-            const response = await fetch('http://localhost:8080/api/fractals/generate', {
+            const response = await fetch('https://0461-77-238-230-117.ngrok-free.app/api/fractals/generate', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData),
@@ -69,7 +69,7 @@ if (document.getElementById('analyzeButton')) {
         }
 
         try {
-            const response = await fetch('http://localhost:8080/api/analysis/data');
+            const response = await fetch('https://0461-77-238-230-117.ngrok-free.app/api/analysis/data');
             if (!response.ok) {
                 throw new Error('Failed to fetch graph data');
             }
