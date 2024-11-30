@@ -29,14 +29,14 @@ if (document.getElementById('fractalForm')) {
         }
 
         try {
-            const response = await fetch('https://0461-77-238-230-117.ngrok-free.app/api/fractals/generate', {
+            const response = await fetch('https://2f92-2-63-200-173.ngrok-free.app/api/fractals/generate', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData),
             });
 
             if (!response.ok) {
-                throw new Error('Failed to generate fractal');
+                throw new Error(`Failed to generate fractal: ${response.status} - ${response.statusText}`);
             }
 
             const blob = await response.blob();
@@ -53,11 +53,10 @@ if (document.getElementById('fractalForm')) {
 
         } catch (error) {
             console.error('Error:', error);
-            alert('Failed to generate fractal. Check the console for details.');
+            alert(`Failed to generate fractal. Error: ${error.message}`);
         }
     });
 }
-
 
 if (document.getElementById('analyzeButton')) {
     document.getElementById('analyzeButton').addEventListener('click', async () => {
@@ -69,7 +68,14 @@ if (document.getElementById('analyzeButton')) {
         }
 
         try {
-            const response = await fetch('https://0461-77-238-230-117.ngrok-free.app/api/analysis/data');
+            const response = await fetch('https://2f92-2-63-200-173.ngrok-free.app/api/analysis/data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ input: 1 }),
+            });
+
             if (!response.ok) {
                 throw new Error('Failed to fetch graph data');
             }

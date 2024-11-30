@@ -419,13 +419,19 @@ body {
 
 .contact-section p {
     margin: 0;
+    padding: 10px;
     line-height: 1.6;
     color: #555;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .contact-section a {
     color: #20558e;
     text-decoration: none;
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow-wrap: anywhere;
 }
 
 .contact-section a:hover {
