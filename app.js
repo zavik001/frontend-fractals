@@ -29,7 +29,7 @@ if (document.getElementById('fractalForm')) {
         }
 
         try {
-            const response = await fetch('https://2f92-2-63-200-173.ngrok-free.app/api/fractals/generate', {
+            const response = await fetch('https://e40d-217-71-129-131.ngrok-free.app/api/fractals/generate', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData),
@@ -68,7 +68,7 @@ if (document.getElementById('analyzeButton')) {
         }
 
         try {
-            const response = await fetch('https://2f92-2-63-200-173.ngrok-free.app/api/analysis/data', {
+            const response = await fetch('https://e40d-217-71-129-131.ngrok-free.app/api/analysis/data', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
